@@ -1,11 +1,13 @@
-const RatingAndReview = require("../models/RatingAndRaview");
+const RatingAndReview = require("../models/RatingAndReview");
 const Course = require("../models/Course");
 const { mongo, default: mongoose } = require("mongoose");
 
 //createRating
 exports.createRating = async (req, res) => {
   try {
+    //get user id
     const userId = req.user.id;
+    //fetchdata from req body
     const { rating, review, courseId } = req.body;
     //check if user is enrolled or not
     const courseDetails = await Course.findOne({
@@ -69,6 +71,7 @@ exports.getAverageRating = async (req, res) => {
   try {
     //get course ID
     const courseId = req.body.courseId;
+    //calculate avg rating
 
     const result = await RatingAndReview.aggregate([
       {
@@ -108,6 +111,7 @@ exports.getAverageRating = async (req, res) => {
 };
 
 //getAllRatingAndReviews
+
 exports.getAllRating = async (req, res) => {
   try {
     const allReviews = await RatingAndReview.find({})
