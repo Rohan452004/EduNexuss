@@ -62,7 +62,7 @@ exports.signup = async (req, res) => {
       // OTP not found for the email
       return res.status(400).json({
         success: false,
-        message: "The OTP is not valid",
+        message: "No OTP found for the email",
       });
     } else if (otp !== response[0].otp) {
       // Invalid OTP
@@ -78,6 +78,10 @@ exports.signup = async (req, res) => {
     // Create the user
     let approved = "";
     approved === "Instructor" ? (approved = false) : (approved = true);
+
+    // Generate a random profile image based on the user's name
+    const encodedName = encodeURIComponent(`${firstName} ${lastName}`);
+    const imageUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodedName}`;
 
     // Create the Additional Profile For User
     const profileDetails = await Profile.create({
@@ -95,7 +99,7 @@ exports.signup = async (req, res) => {
       accountType: accountType,
       approved: approved,
       additionalDetails: profileDetails._id,
-      image: "",
+      image: imageUrl,
     });
 
     return res.status(200).json({
@@ -142,7 +146,7 @@ exports.login = async (req, res) => {
     // Generate JWT token and Compare Password
     if (await bcrypt.compare(password, user.password)) {
       const token = jwt.sign(
-        { email: user.email, id: user._id, role: user.role },
+        { email: user.email, id: user._id, accountType: user.accountType },
         process.env.JWT_SECRET,
         {
           expiresIn: "24h",
