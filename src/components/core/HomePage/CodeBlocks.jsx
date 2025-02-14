@@ -15,10 +15,10 @@ const CodeBlocks = ({
 }) => {
   return (
     <div
-      className={`flex ${position} ml-10 mr-10 justify-between flex-col lg:gap-4 gap-4`}
+      className={`flex ${position} justify-between flex-col lg:gap-4 gap-4`}
     >
       {/* Section 1 */}
-      <div className="text-white ml-10 w-[100%] lg:w-[50%] flex flex-col gap-8">
+      <div className="text-white ml-10 -mt-10 lg:mt-0 w-[100%] lg:w-[50%] flex flex-col gap-8">
         {heading}
 
         {/* Sub Heading */}
@@ -27,7 +27,7 @@ const CodeBlocks = ({
         </div>
 
         {/* Button Group */}
-        <div className="flex gap-7 mt-7">
+        <div className="flex gap-7 mt-0 lg:mt-7">
           <CTAButton
             active={ctabtn1.active}
             linkto={ctabtn1.link}
@@ -49,7 +49,7 @@ const CodeBlocks = ({
       </div>
 
       {/* Section 2 */}
-      <div className="h-fit mr-10 code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px]">
+      <div className="h-fit mr-10 mt-10 lg:mt-0 code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px]">
         {backgroundGradient}
 
         {/* Indexing */}
