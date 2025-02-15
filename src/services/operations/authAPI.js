@@ -111,7 +111,7 @@ export function login(email, password, navigate) {
       navigate("/dashboard/my-profile");
     } catch (error) {
       console.log("LOGIN API ERROR............", error);
-      toast.error("Login Failed");
+      toast.error("Login Failed ! Check Your Credentials");
     }
     dispatch(setLoading(false));
     toast.dismiss(toastId);
@@ -154,7 +154,7 @@ export function getPasswordResetToken(email, setEmailSent) {
   };
 }
 
-export function resetPassword(password, confirmPassword, token) {
+export function resetPassword(password, confirmPassword, token, navigate) {
   return async (dispatch) => {
     dispatch(setLoading(true));
     try {
@@ -171,6 +171,7 @@ export function resetPassword(password, confirmPassword, token) {
       }
 
       toast.success("Password has been reset successfully");
+      navigate("/login");
     } catch (error) {
       console.log("RESET PASSWORD TOKEN Error", error);
       toast.error("Unable to reset password");

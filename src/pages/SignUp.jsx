@@ -1,11 +1,16 @@
-import React from 'react'
+import signupImg from "../assets/Images/signup.webp";
+import Template from "../components/core/Auth/Template";
 
-const SignUp = () => {
+function Signup() {
   return (
-    <div>
-      
-    </div>
-  )
+    <Template
+      title="Join the millions learning to code with EduNexus for free"
+      description1="Build skills for today, tomorrow, and beyond."
+      description2="Education to future-proof your career."
+      image={signupImg}
+      formType="signup"
+    />
+  );
 }
 
-export default SignUp
+export default Signup;

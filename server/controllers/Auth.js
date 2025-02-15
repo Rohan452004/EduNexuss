@@ -184,6 +184,7 @@ exports.login = async (req, res) => {
 };
 // Send OTP For Email Verification
 exports.sendotp = async (req, res) => {
+  console.log("INSIDE SEND OTP");
   try {
     const { email } = req.body;
 

@@ -1,43 +1,27 @@
+const { contactUsEmail } = require("../mail/templates/contactFormRes");
 const mailSender = require("../utils/mailSender");
 
 exports.contactUs = async (req, res) => {
-  const { firstName, lastName, email, message, phoneNo } = req.body;
-  if (!firstName || !email || !message) {
-    return res.status(403).send({
-      success: false,
-      message: "All Fields are required",
-    });
-  }
+  const { email, firstname, lastname, message, phoneNo, countrycode } =
+    req.body;
+  console.log(req.body);
   try {
-    const data = {
-      firstName,
-      lastName: `${lastName ? lastName : "null"}`,
+    const emailRes = await mailSender(
       email,
-      message,
-      phoneNo: `${phoneNo ? phoneNo : "null"}`,
-    };
-    const info = await mailSender(
-      process.env.CONTACT_MAIL,
-      "Enquery",
-      `<html><body>${Object.keys(data).map((key) => {
-        return `<p>${key} : ${data[key]}</p>`;
-      })}</body></html>`
+      "Your Data send successfully",
+      contactUsEmail(email, firstname, lastname, message, phoneNo, countrycode)
     );
-    if (info) {
-      return res.status(200).send({
-        success: true,
-        message: "Your message has been sent successfully",
-      });
-    } else {
-      return res.status(403).send({
-        success: false,
-        message: "Something went wrong",
-      });
-    }
+    console.log("Email Res ", emailRes);
+    return res.json({
+      success: true,
+      message: "Email send successfully",
+    });
   } catch (error) {
-    return res.status(403).send({
+    console.log("Error", error);
+    console.log("Error message :", error.message);
+    return res.json({
       success: false,
-      message: "Something went wrong",
+      message: "Something went wrong...",
     });
   }
 };
