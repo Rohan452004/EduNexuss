@@ -13,6 +13,7 @@ const {
   editCourse,
   getInstructorCourses,
   deleteCourse,
+  getCourseDuration,
 } = require("../controllers/Course");
 
 // Categories Controllers Import
@@ -34,7 +35,7 @@ const {
   createSubSection,
   updateSubSection,
   deleteSubSection,
-} = require("../controllers/Subsection");
+} = require("../controllers/SubSection");
 
 // Rating Controllers Import
 const {
@@ -83,6 +84,8 @@ router.post("/editCourse", auth, isInstructor, editCourse);
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
 // Delete a Course
 router.delete("/deleteCourse", deleteCourse);
+// Get Course Duration
+router.post("/getCourseDuration", getCourseDuration);
 
 // router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 

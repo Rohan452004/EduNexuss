@@ -22,6 +22,7 @@ const {
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
+  GET_COURSE_DURATION,
 } = courseEndpoints;
 
 export const getAllCourses = async () => {
@@ -385,4 +386,36 @@ export const createRating = async (data, token) => {
   }
   toast.dismiss(toastId);
   return success;
+};
+
+// Get total duration of a course
+export const getCourseDuration = async (courseId, token) => {
+  console.log("INSIDE GET DURATION")
+  console.log("Course ID:",courseId)
+  const toastId = toast.loading("Fetching course duration...");
+  let result = null;
+  try {
+    const response = await apiConnector(
+      "POST",
+      GET_COURSE_DURATION,
+      { // Define this API endpoint in your constants
+       courseId ,
+      },
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
+    console.log("COURSE_DURATION_API RESPONSE............", response);
+
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+    result = response?.data?.data;
+  } catch (error) {
+    console.log("COURSE_DURATION_API ERROR............", error);
+    result = error.response?.data;
+    // toast.error(error.response?.data?.message);
+  }
+  toast.dismiss(toastId);
+  return result;
 };

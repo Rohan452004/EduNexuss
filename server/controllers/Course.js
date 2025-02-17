@@ -491,3 +491,63 @@ exports.deleteCourse = async (req, res) => {
     });
   }
 };
+
+
+exports.getCourseDuration = async (req, res) => {
+  console.log("INSIDE COURSE DURATION")
+  try {
+    const { courseId } = req.body; // Expecting courseId in request body
+    console.log(courseId);
+
+    // Fetch only courseContent and subSection with timeDuration
+    const course = await Course.findOne({ _id: courseId })
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+          select: "timeDuration", // Fetch only timeDuration
+        },
+      })
+      .exec();
+
+    if (!course) {
+      return res.status(400).json({
+        success: false,
+        message: `Could not find course with id: ${courseId}`,
+      });
+    }
+
+    let totalDurationInSeconds = 0;
+
+    // Calculate total duration from subsections
+    course.courseContent.forEach((content) => {
+      content.subSection.forEach((subSection) => {
+        totalDurationInSeconds += parseFloat(subSection.timeDuration) || 0; // Handle NaN safely
+      });
+    });
+
+    // Convert seconds to HH:MM:SS format
+    const convertSecondsToDuration = (totalSeconds) => {
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = Math.floor(totalSeconds % 60);
+      return `${hours}h ${minutes}m ${seconds}s`;
+    };
+
+    const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        courseId,
+        totalDuration,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching course duration:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
