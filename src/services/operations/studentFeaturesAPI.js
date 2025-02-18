@@ -1,7 +1,7 @@
 import { toast } from "react-hot-toast";
 import { studentEndpoints } from "../apis";
 import { apiConnector } from "../apiconnector";
-import rzpLogo from "../../assets/Logo/rzp_logo.png";
+import rzpLogo from "../../assets/Logo/rzp_logo2.png";
 import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
 
@@ -62,10 +62,10 @@ export async function buyCourse(
     //options
     const options = {
       key: process.env.RAZORPAY_KEY,
-      currency: orderResponse.data.message.currency,
-      amount: `${orderResponse.data.message.amount}`,
-      order_id: orderResponse.data.message.id,
-      name: "StudyNotion",
+      currency: orderResponse.data.data.currency,
+      amount: `${orderResponse.data.data.amount}`,
+      order_id: orderResponse.data.data.id,
+      name: "EduNexus",
       description: "Thank You for Purchasing the Course",
       image: rzpLogo,
       prefill: {
@@ -76,7 +76,7 @@ export async function buyCourse(
         //send successful wala mail
         sendPaymentSuccessEmail(
           response,
-          orderResponse.data.message.amount,
+          orderResponse.data.data.amount,
           token
         );
         //verifyPayment
@@ -87,7 +87,7 @@ export async function buyCourse(
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
     paymentObject.on("payment.failed", function (response) {
-      toast.error("oops, payment failed");
+      toast.error("Oops, Payment failed");
       console.log(response.error);
     });
   } catch (error) {
@@ -128,7 +128,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
-    toast.success("payment Successful, ypou are addded to the course");
+    toast.success("Payment Successful, You are addded to the course");
     navigate("/dashboard/enrolled-courses");
     dispatch(resetCart());
   } catch (error) {
