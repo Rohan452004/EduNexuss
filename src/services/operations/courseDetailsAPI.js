@@ -390,8 +390,6 @@ export const createRating = async (data, token) => {
 
 // Get total duration of a course
 export const getCourseDuration = async (courseId, token) => {
-  console.log("INSIDE GET DURATION")
-  console.log("Course ID:",courseId)
   const toastId = toast.loading("Fetching course duration...");
   let result = null;
   try {

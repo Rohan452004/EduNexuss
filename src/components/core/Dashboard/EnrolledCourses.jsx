@@ -87,7 +87,7 @@ export default function EnrolledCourses() {
                   </p>
                 </div>
               </div>
-              <div className="w-1/4 px-2 py-3">{course?.totalDuration}</div>
+              <div className="w-1/4 px-2 py-3">{course?.totalDuration || '0s'}</div>
               <div className="flex w-1/5 flex-col gap-2 px-2 py-3">
                 <p>Progress: {course.progressPercentage || 0}%</p>
                 <ProgressBar

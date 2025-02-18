@@ -109,7 +109,7 @@ exports.createCourse = async (req, res) => {
       { _id: category },
       {
         $push: {
-          courses: newCourse._id,
+          course: newCourse._id,
         },
       },
       { new: true }
@@ -442,8 +442,10 @@ exports.getInstructorCourses = async (req, res) => {
 };
 // Delete the Course
 exports.deleteCourse = async (req, res) => {
+  console.log("INSIDE DELETE COURSE")
   try {
     const { courseId } = req.body;
+    console.log("Course ID:", courseId)
 
     // Find the course
     const course = await Course.findById(courseId);
@@ -452,7 +454,7 @@ exports.deleteCourse = async (req, res) => {
     }
 
     // Unenroll students from the course
-    const studentsEnrolled = course.studentsEnroled;
+    const studentsEnrolled = course.studentsEnrolled;
     for (const studentId of studentsEnrolled) {
       await User.findByIdAndUpdate(studentId, {
         $pull: { courses: courseId },
@@ -494,10 +496,8 @@ exports.deleteCourse = async (req, res) => {
 
 
 exports.getCourseDuration = async (req, res) => {
-  console.log("INSIDE COURSE DURATION")
   try {
     const { courseId } = req.body; // Expecting courseId in request body
-    console.log(courseId);
 
     // Fetch only courseContent and subSection with timeDuration
     const course = await Course.findOne({ _id: courseId })
