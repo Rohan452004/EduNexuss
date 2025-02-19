@@ -87,7 +87,7 @@ router.delete("/deleteCourse", deleteCourse);
 // Get Course Duration
 router.post("/getCourseDuration", getCourseDuration);
 
-// router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
+router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 
 // ********************************************************************************************************
 //                                      Category routes (Only by Admin)

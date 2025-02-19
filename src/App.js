@@ -22,13 +22,15 @@ import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/AddCourse";
 import MyCourses from "./components/core/Dashboard/MyCourses";
 import EditCourse from "./components/core/Dashboard/EditCourse";
+import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
+import ViewCourse from "./pages/ViewCourse";
+import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 
 import { ACCOUNT_TYPE } from "./utils/constants";
 
-function App(){
-
+function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -98,6 +100,7 @@ function App(){
           }
         >
           <Route path="dashboard/my-profile" element={<MyProfile />} />
+
           <Route path="dashboard/Settings" element={<Settings />} />
 
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
@@ -112,12 +115,29 @@ function App(){
 
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
-              {/* <Route path="dashboard/instructor" element={<Instructor />} /> */}
+              <Route path="dashboard/instructor" element={<Instructor />} />
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route
                 path="dashboard/edit-course/:courseId"
                 element={<EditCourse />}
+              />
+            </>
+          )}
+        </Route>
+
+        <Route
+          element={
+            <PrivateRoute>
+              <ViewCourse />
+            </PrivateRoute>
+          }
+        >
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route
+                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                element={<VideoDetails />}
               />
             </>
           )}

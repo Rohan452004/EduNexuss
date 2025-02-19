@@ -4,12 +4,14 @@ const { mongo, default: mongoose } = require("mongoose");
 
 //createRating
 exports.createRating = async (req, res) => {
+    console.log("INSIDE CREATE RATING");
+    console.log(req.body);
     try{
 
         //get user id
         const userId = req.user.id;
         //fetchdata from req body
-        const {rating, review, courseId} = req.body;
+        const {courseId, rating, review} = req.body;
         //check if user is enrolled or not
         const courseDetails = await Course.findOne(
                                     {_id:courseId,
@@ -17,6 +19,7 @@ exports.createRating = async (req, res) => {
                                 });
 
         if(!courseDetails) {
+            console.log("YAHA FATA 1");
             return res.status(404).json({
                 success:false,
                 message:'Student is not enrolled in the course',
@@ -28,6 +31,7 @@ exports.createRating = async (req, res) => {
                                                 course:courseId,
                                             });
         if(alreadyReviewed) {
+           console.log("YAHA FATA 2");
                     return res.status(403).json({
                         success:false,
                         message:'Course is already reviewed by the user',
