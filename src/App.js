@@ -1,5 +1,6 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 import "./App.css";
 import { useState } from "react";
 import Home from "./pages/Home";
@@ -38,6 +39,9 @@ function App() {
 
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
+      <Helmet>
+        <title>EduNexus</title>
+      </Helmet>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
