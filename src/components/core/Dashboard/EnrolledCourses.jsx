@@ -80,14 +80,16 @@ export default function EnrolledCourses() {
                 />
                 <div className="flex max-w-xs flex-col gap-2">
                   <p className="font-semibold">{course.courseName}</p>
-                  <p className="text-xs text-gray-400">
+                  <p className="hidden md:block text-xs text-gray-400">
                     {course.courseDescription.length > 50
                       ? `${course.courseDescription.slice(0, 50)}...`
                       : course.courseDescription}
                   </p>
                 </div>
               </div>
-              <div className="w-1/4 px-2 py-3">{course?.totalDuration || '0s'}</div>
+              <div className="w-1/4 px-2 py-3">
+                {course?.totalDuration || "0s"}
+              </div>
               <div className="flex w-1/5 flex-col gap-2 px-2 py-3">
                 <p>Progress: {course.progressPercentage || 0}%</p>
                 <ProgressBar

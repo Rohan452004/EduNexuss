@@ -5,22 +5,18 @@ import { Pie } from "react-chartjs-2";
 Chart.register(...registerables);
 
 export default function StudentsChart({ courses }) {
-  // State to keep track of the currently selected chart
   const [currChart, setCurrChart] = useState("students");
 
-  // Function to generate random colors for the chart
+  // Function to generate random colors
   const generateRandomColors = (numColors) => {
-    const colors = [];
-    for (let i = 0; i < numColors; i++) {
-      const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+    return Array.from({ length: numColors }, () => {
+      return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
         Math.random() * 256
       )}, ${Math.floor(Math.random() * 256)})`;
-      colors.push(color);
-    }
-    return colors;
+    });
   };
 
-  // Data for the chart displaying student information
+  // Chart data
   const chartDataStudents = {
     labels: courses.map((course) => course.courseName),
     datasets: [
@@ -31,22 +27,26 @@ export default function StudentsChart({ courses }) {
     ],
   };
 
-  // Options for the chart
   const options = {
     maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+        labels: {
+          color: "#fff", // Makes legend text visible in dark mode
+        },
+      },
+    },
   };
 
   return (
-    <div className="flex flex-1 flex-col gap-y-4 rounded-md bg-richblack-800 p-6">
-      <p className="text-lg font-bold text-richblack-5">Visualize: Student per Course</p>
-      <div className="space-x-4 font-semibold">
-      </div>
-      <div className="-mt-4 mb-2 relative mx-auto aspect-square h-full w-full">
-        {/* Render the Pie chart based on the selected chart */}
-        <Pie
-          data={chartDataStudents}
-          options={options}
-        />
+    <div className="flex flex-col items-center sm:items-start gap-y-4 rounded-md bg-richblack-800 p-4 sm:p-6 w-full">
+      <p className="text-lg font-bold text-richblack-5 text-center sm:text-left">
+        Visualize: Student per Course
+      </p>
+      <div className="w-full sm:h-[200px] md:h-[200px] lg:h-[200px] xl:h-[200px]">
+        <Pie data={chartDataStudents} options={options} />
       </div>
     </div>
   );

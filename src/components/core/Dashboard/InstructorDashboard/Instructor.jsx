@@ -47,7 +47,7 @@ export default function Instructor() {
         <h1 className="text-3xl font-bold text-white">
           Hi {user?.firstName} 👋
         </h1>
-        <p className="text-lg text-gray-400">
+        <p className="text-lg text-richblack-200">
           Let’s start something new today!
         </p>
       </div>
@@ -77,7 +77,7 @@ export default function Instructor() {
               </p>
             </div>
           </div>
-          <div className="ml-10 w-[80%] flex flex-row gap-20">
+          <div className="ml-10 w-[80%] flex flex-col lg:flex-row gap-20">
             <StudentsChart courses={instructorData} />
             <IncomeChart courses={instructorData} />
           </div>

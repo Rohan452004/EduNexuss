@@ -75,7 +75,7 @@ exports.courseEnrollmentEmail = (courseName, name) => {
                     are excited to have you as a participant!</p>
                 <p>Please log in to your learning dashboard to access the course materials and start your learning journey.
                 </p>
-                <a class="cta" href="http://localhost:3000/dashboard/enrolled-courses">Go to Dashboard</a>
+                <a class="cta" href="https://edunexus454.vercel.app/dashboard/enrolled-courses">Go to Dashboard</a>
             </div>
             <div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
                     href="mailto:info@EduNexus.com">info@EduNexus.com</a>. We are here to help!</div>
