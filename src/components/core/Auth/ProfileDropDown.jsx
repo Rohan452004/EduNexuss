@@ -53,11 +53,11 @@ export default function ProfileDropdown({ closeNavbar }) {
         <div
           onClick={(e) => e.stopPropagation()}
           ref={ref}
-          className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 
+          className={`absolute top-[118%] z-[1000] divide-y-[1px] divide-richblack-700 
              overflow-hidden rounded-md border-[1px] border-richblack-700 
-             bg-richblack-800 w-[200px] md:w-auto
-             md:right-0 md:top-[118%] 
-             left-1/2 transform -translate-x-1/2 md:translate-x-0"
+             bg-richblack-800 w-[200px]
+             left-1/2 transform -translate-x-1/2 
+             md:left-0 md:translate-x-0 md:right-auto`}
         >
           {/* Close Navbar on Dashboard Click */}
           <Link
