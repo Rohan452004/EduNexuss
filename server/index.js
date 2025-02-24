@@ -15,6 +15,9 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;
+const frontendurl = process.env.FRONTEND_URL;
+
+console.log(frontendurl)
 
 //database connect
 database.connectDB();
@@ -23,7 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://edunexus454.vercel.app"],
+    origin: [frontendurl],
     credentials: true,
   })
 );
