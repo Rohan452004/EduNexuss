@@ -2,6 +2,7 @@ const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
+const dotenv = require("dotenv");
 dotenv.config();
 const frontendurl = process.env.FRONTEND_URL;
 
