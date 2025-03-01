@@ -172,7 +172,7 @@ function Navbar() {
               {NavbarLinks.map((link, index) => (
                 <div key={index}>
                   {link.title === "Catalog" ? (
-                    <div className="relative w-full">
+                    <div className="relative w-full z-[100]">
                       <button
                         onClick={toggleCatalogDropdown}
                         className="flex w-full items-center justify-between rounded-md bg-richblack-700 px-4 py-2 text-richblack-25 md:bg-transparent md:w-auto"
