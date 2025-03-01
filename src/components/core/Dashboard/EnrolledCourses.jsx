@@ -27,6 +27,7 @@ export default function EnrolledCourses() {
 
   return (
     <>
+    <div className="mx-auto w-11/12 max-w-[1000px] ">
       <div className="text-3xl font-semibold text-white">Enrolled Courses</div>
 
       {!enrolledCourses ? (
@@ -102,6 +103,7 @@ export default function EnrolledCourses() {
           ))}
         </div>
       )}
+      </div>
     </>
   );
 }

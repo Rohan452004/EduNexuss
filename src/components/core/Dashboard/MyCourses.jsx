@@ -20,7 +20,7 @@ const MyCourses = () => {
     fetchedCourses();
   }, []);
   return (
-    <div className="mx-auto w-11/12 max-w-[1000px] py-10">
+    <div className="mx-auto w-11/12 max-w-[1000px] py-5">
       <div>
         <div className="mb-14 flex items-center justify-between">
           <h1 className="text-3xl font-medium text-richblack-5">My Courses</h1>

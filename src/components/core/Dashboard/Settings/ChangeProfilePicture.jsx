@@ -68,7 +68,7 @@ export default function ChangeProfilePicture() {
       </div>
 
       {/* Buttons (Side by Side) */}
-      <div className="flex items-center gap-3 mt-4 md:mt-0">
+      <div className="flex items-center gap-5 mt-4 md:mt-0">
         <input
           type="file"
           ref={fileInputRef}

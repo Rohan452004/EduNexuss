@@ -8,8 +8,8 @@ const MyProfile = () => {
   const { user } = useSelector((state) => state.profile);
   const navigate = useNavigate();
   return (
-    <div className="mx-auto w-11/12 max-w-[1000px] py-10">
-      <div className="py-10">
+    <div className="mx-auto w-11/12 max-w-[1000px] ">
+      <div className="">
         <h1 className="mb-14 text-3xl font-medium text-richblack-5">
           My Profile
         </h1>
