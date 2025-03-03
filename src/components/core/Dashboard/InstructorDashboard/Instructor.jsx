@@ -77,10 +77,17 @@ export default function Instructor() {
               </p>
             </div>
           </div>
-          <div className="ml-10 w-[80%] flex flex-col lg:flex-row gap-20">
-            <StudentsChart courses={instructorData} />
-            <IncomeChart courses={instructorData} />
+          <div className="ml-4 w-full flex flex-col gap-10 lg:flex-row lg:gap-20">
+            <StudentsChart
+              courses={instructorData}
+              className="w-full min-w-[300px] sm:min-w-[350px] lg:min-w-[400px]"
+            />
+            <IncomeChart
+              courses={instructorData}
+              className="w-full min-w-[300px] sm:min-w-[350px] lg:min-w-[400px]"
+            />
           </div>
+
           <div className="bg-gray-900 p-6 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-4">
               <p className="text-lg font-bold text-white">Your Courses</p>

@@ -45,7 +45,7 @@ export default function IncomeChart({ courses }) {
       <p className="text-lg font-bold text-richblack-5 text-center sm:text-left">
         Visualize: Income per Course
       </p>
-      <div className="w-full sm:h-[200px] md:h-[200px] lg:h-[200px] xl:h-[200px]">
+      <div className="w-full h-[200px] sm:h-[200px] md:h-[200px] lg:h-[200px] xl:h-[200px]">
         <Pie data={chartIncomeData} options={options} />
       </div>
     </div>
