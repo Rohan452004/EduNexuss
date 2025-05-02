@@ -1,5 +1,8 @@
 # EduNexus Ed-Tech Platform (MERN App)
 
+![diagram-export-02-05-2025-12_19_45](https://github.com/user-attachments/assets/3f64af4e-eee5-4eab-af6a-227e104b1f25)
+
+
 EduNexus is a fully functional ed-tech platform that enables users to create, consume, and rate educational content. The platform is built using the MERN stack, which includes ReactJS, NodeJS, MongoDB, and ExpressJS.
 
 - Designed and implemented a RESTful API with JWT authentication, OTP verification, and role-based access control, ensuring a secure and scalable backend.
